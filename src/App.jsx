@@ -1,21 +1,11 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import './assets/css/todo.css'
+import './assets/styles/todo.css'
+import './assets/styles/global.css'
 import TodoNew from './assets/js/TodoNew';
 import TodoData from './assets/js/TodoData';
 
 function App() {
-  // const teacher = 'hoidanIT'
-  // const student = [
-  //   {
-  //     id: 1,
-  //     name: 'minh'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'phúc'
-  //   }
-  // ]
 
   const [todoList, setTodoList] = useState([]);
 
