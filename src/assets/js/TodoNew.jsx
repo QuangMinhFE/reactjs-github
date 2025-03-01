@@ -2,11 +2,13 @@ import { useState } from "react";
 
 // tất cả mọi thứ khai báo trong Component
 const TodoNew = (props) => {
+    const { addNewTodo } = props;
     const [valueInput, setValueInput] = useState('')
 
     const handleClick = () => {
         // console.log('click me!')
-        console.log(valueInput)
+        addNewTodo(valueInput)
+        setValueInput('')
     }
 
     const handleOnChange = (value) => {
@@ -18,7 +20,7 @@ const TodoNew = (props) => {
 
     return (<div className='todo-new'>
         {/* thực thi function */}
-        <input type='text' onChange={(event) => handleOnChange(event.target.value)} />
+        <input type='text' onChange={(event) => handleOnChange(event.target.value)} value={valueInput} />
         {/* 
             không thực thi function
         <input type='text' onChange={handleOnChange} /> */}
