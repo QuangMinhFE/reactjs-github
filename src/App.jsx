@@ -2,8 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './assets/styles/todo.css'
 import './assets/styles/global.css'
-import TodoNew from './assets/js/TodoNew';
-import TodoData from './assets/js/TodoData';
+import TodoNew from './assets/components/js/TodoNew';
+import TodoData from './assets/components/js/TodoData';
+import Header from './assets/components/layouts/header';
+import Footer from './assets/components/layouts/footer';
 
 function App() {
 
@@ -28,12 +30,15 @@ function App() {
   }
 
   return (
-    <div className='todo-container'>
-      <div className='todo-title'>Todo List</div>
-      <TodoNew addNewTodo={addNewTodo} />
 
-      {/* Cách 1 */}
-      {/* {todoList.length > 0 &&
+    <>
+      <Header />
+      <div className='todo-container'>
+        <div className='todo-title'>Todo List</div>
+        <TodoNew addNewTodo={addNewTodo} />
+
+        {/* Cách 1 */}
+        {/* {todoList.length > 0 &&
         <TodoData todoList={todoList} />
       }
       {todoList.length === 0 &&
@@ -42,15 +47,15 @@ function App() {
         </div>
       } */}
 
-      {todoList.length > 0 ?
-        <TodoData todoList={todoList} deleteTodo={deleteTodo} />
-        :
-        <div className='todo-image'>
-          <img src={reactLogo} />
-        </div>}
-
-
-    </div>
+        {todoList.length > 0 ?
+          <TodoData todoList={todoList} deleteTodo={deleteTodo} />
+          :
+          <div className='todo-image'>
+            <img src={reactLogo} />
+          </div>}
+      </div>
+      <Footer />
+    </>
   );
 }
 
