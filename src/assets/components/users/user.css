@@ -1,0 +1,21 @@
+.user-page {
+    padding: 5px 10px;
+}
+
+.user-wrap {
+    margin-bottom: 10px;
+}
+
+.user-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.user-group input {
+    outline: none;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+}

@@ -6,7 +6,7 @@ import RegisterPage from './assets/pages/register.jsx'
 import UserPage from './assets/pages/user.jsx'
 import BookPage from './assets/pages/book.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import TodoApp from './assets/components/js/TodoApp.jsx'
+import TodoApp from './assets/components/todo/TodoApp.jsx'
 import ErrorPage from './assets/pages/error.jsx'
 
 const router = createBrowserRouter([{

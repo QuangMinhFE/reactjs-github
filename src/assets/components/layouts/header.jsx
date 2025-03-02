@@ -3,11 +3,7 @@ import './header.css'
 
 const Header = () => {
     return (
-        // <a className="active" href="/">Home</a> => gây reload
-        // <ul> <li><Link className="active" to="/">Home</Link></li> <li><Link to="/users">Users</Link></li> <li><Link to="/products">Products</Link></li></ul>
-
-
-        <ul> <li><NavLink to="/">Home</NavLink></li> <li><NavLink to="/users">Users</NavLink></li> <li><NavLink to="/books">Books</NavLink></li></ul>
+        <ul className='header'> <li><NavLink to="/">Home</NavLink></li> <li><NavLink to="/users">Users</NavLink></li> <li><NavLink to="/books">Books</NavLink></li></ul>
     );
 }
 
