@@ -6,6 +6,7 @@ import TodoNew from './assets/components/js/TodoNew';
 import TodoData from './assets/components/js/TodoData';
 import Header from './assets/components/layouts/header';
 import Footer from './assets/components/layouts/footer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
             <img src={reactLogo} />
           </div>}
       </div>
+      <Outlet />
       <Footer />
     </>
   );
