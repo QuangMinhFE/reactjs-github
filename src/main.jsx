@@ -4,13 +4,15 @@ import App from './App.jsx'
 import LoginPage from './assets/pages/login.jsx'
 import RegisterPage from './assets/pages/register.jsx'
 import UserPage from './assets/pages/user.jsx'
-import ProductPage from './assets/pages/product.jsx'
+import BookPage from './assets/pages/book.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TodoApp from './assets/components/js/TodoApp.jsx'
+import ErrorPage from './assets/pages/error.jsx'
 
 const router = createBrowserRouter([{
   path: '/',
   element: <App />,
+  errorElement: <ErrorPage />,
   children: [
     {
       index: true,
@@ -22,8 +24,8 @@ const router = createBrowserRouter([{
       element: <UserPage />
     },
     {
-      path: '/products',
-      element: <ProductPage />
+      path: '/books',
+      element: <BookPage />
     },],
 },
 {
