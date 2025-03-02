@@ -6,18 +6,25 @@ import RegisterPage from './assets/pages/register.jsx'
 import UserPage from './assets/pages/user.jsx'
 import ProductPage from './assets/pages/product.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import TodoApp from './assets/components/js/TodoApp.jsx'
 
 const router = createBrowserRouter([{
   path: '/',
   element: <App />,
-  children: [{
-    path: '/users',
-    element: <UserPage />
-  },
-  {
-    path: '/products',
-    element: <ProductPage />
-  },],
+  children: [
+    {
+      index: true,
+      element: <TodoApp />,
+    },
+
+    {
+      path: '/users',
+      element: <UserPage />
+    },
+    {
+      path: '/products',
+      element: <ProductPage />
+    },],
 },
 {
   path: '/login',
