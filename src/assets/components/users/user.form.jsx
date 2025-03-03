@@ -3,15 +3,14 @@ import './user.css'
 import { Input, Button, notification, Modal } from "antd";
 import { CreateUserAPI } from '../../services/api.service';
 
-const UserForm = () => {
+const UserForm = (props) => {
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassWord] = useState('')
     const [phone, setPhone] = useState('')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-
+    const { loadUser } = props;
 
     const handleOnSubmit = async () => {
         // use try / catch
@@ -22,6 +21,7 @@ const UserForm = () => {
                 description: 'user create successfully',
             })
             resetAndCloseModal()
+            await loadUser()
         } else {
             notification.error({
                 message: 'failed user',
@@ -38,7 +38,6 @@ const UserForm = () => {
         setPassWord('')
         setPhone('')
     }
-
 
 
     return (
