@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './user.css'
-import { Input, Button } from "antd";
+import { Input, Button, notification, message } from "antd";
+import { CreateUserAPI } from '../../services/api.service';
 
 const UserForm = () => {
     const [fullName, setFullName] = useState('')
@@ -8,10 +9,27 @@ const UserForm = () => {
     const [password, setPassWord] = useState('')
     const [phone, setPhone] = useState('')
 
-
-    const handleOnClick = () => {
-        console.log(`name: ${fullName}, email: ${email}, password: ${password}, phone: ${phone}`)
+    const handleOnClick = async () => {
+        // use try / catch
+        const res = await CreateUserAPI(fullName, email, password, phone)
+        // console.log('check res: ', res)
+        // debugger
+        if (res.data) {
+            notification.success({
+                message: 'created user',
+                description: 'user create successfully',
+            })
+        } else {
+            notification.error({
+                message: 'failed user',
+                // description: 'user create failed',
+                description: JSON.stringify(res.message),
+            })
+        }
+        console.log('check res: ', res.data)
+        // console.log(`name: ${fullName}, email: ${email}, password: ${password}, phone: ${phone}`)
     }
+
 
     return (
         <div className="user-form">
