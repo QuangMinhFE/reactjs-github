@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Input, Button, notification, Modal } from "antd";
-import { CreateUserAPI } from '../../services/api.service';
+import { CreateUserAPI } from "../../services/api.service"
+import { useState } from "react"
+import { Input, notification, Modal } from "antd";
 
-const UserForm = (props) => {
+const UpdateUserModal = (props) => {
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassWord] = useState('')
@@ -14,13 +14,16 @@ const UserForm = (props) => {
     const handleOnSubmit = async () => {
         // use try / catch
         const res = await CreateUserAPI(username, email, password, phone)
+
+
+
         if (res.data) {
             notification.success({
                 message: 'created user',
                 description: 'user create successfully',
             })
             resetAndCloseModal()
-            await loadUser()
+            // await loadUser()
         } else {
             notification.error({
                 message: 'failed user',
@@ -41,12 +44,7 @@ const UserForm = (props) => {
 
     return (
         <>
-            <div className="user-heading">
-                <h3>Table Users</h3>
-                <Button type='primary' onClick={() => setIsModalOpen(true)}>Create User</Button>
-            </div>
-
-            <Modal title="Create User" open={isModalOpen} onOk={() => handleOnSubmit()} onCancel={() => resetAndCloseModal()} maskClosable={false} okText="CREATE">
+            <Modal title="Update a User" open={isModalOpen} onOk={() => handleOnSubmit()} onCancel={() => resetAndCloseModal()} maskClosable={false} okText="SAVE">
                 <div className="user-form">
                     <div className="user-group">
                         <span>UserName</span>
@@ -70,4 +68,5 @@ const UserForm = (props) => {
     )
 }
 
-export default UserForm
+
+export default UpdateUserModal

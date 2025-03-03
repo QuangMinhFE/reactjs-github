@@ -10,3 +10,21 @@
     flex-direction: column;
     gap: 4px;
 }
+
+.feature {
+    display: flex;
+    gap: 20px;
+}
+
+.feature-btn {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.feature-btn--edit {
+    color: orange;
+}
+
+.feature-btn--delete {
+    color: red;
+}
