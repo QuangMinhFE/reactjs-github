@@ -1,74 +1,44 @@
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
+import { fetchAllUserAPI } from '../../services/api.service';
+import { useEffect, useState } from 'react';
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <a>{text}</a>,
+        title: 'UserName',
+        dataIndex: 'username', // cách lấy dữ liệu từ object
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'Email',
+        dataIndex: 'email',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'PassWord',
+        dataIndex: 'password',
     },
     {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: (_, { tags }) => (
-            <>
-                {tags.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
-            </Space>
-        ),
+        title: 'Phone',
+        dataIndex: 'phone',
     },
 ];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
-const UserTable = () => <Table columns={columns} dataSource={data} />;
-export default UserTable;
+
+
+const UserTable = () => {
+    // fake list user (because link not used)
+    const [dataUsers, setDataUsers] = useState([]);
+
+    // empty arr => run 1 time
+    // don't use async await in useEffect
+    useEffect(() => {
+        console.log('run effect 111')
+        loadUser()
+    }, [])
+
+    const loadUser = async () => {
+        const res = await fetchAllUserAPI()
+        setDataUsers(res.data)
+    }
+
+    console.log('run render 000')
+
+    return (<Table columns={columns} dataSource={dataUsers} rowKey={'id'} />);
+}
+export { UserTable }

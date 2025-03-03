@@ -12,7 +12,6 @@ instance.interceptors.request.use(function (config) {
 });
 
 instance.interceptors.response.use(function (response) {
-    // console.log('check inside response', response.data)
     // debugger
     if (response.data && response?.data?.data) {
         return response.data;
