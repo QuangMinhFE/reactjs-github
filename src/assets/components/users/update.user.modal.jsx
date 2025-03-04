@@ -1,21 +1,30 @@
 import { CreateUserAPI } from "../../services/api.service"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input, notification, Modal } from "antd";
 
 const UpdateUserModal = (props) => {
+    const [id, setID] = useState('')
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassWord] = useState('')
     const [phone, setPhone] = useState('')
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const { loadUser } = props;
+
+    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate } = props;
+
+    // new data != old data => run useEffect
+    useEffect(() => {
+        console.log(dataUpdate)
+        if (dataUpdate) {
+            setID(dataUpdate.id)
+            setUserName(dataUpdate.username)
+            setEmail(dataUpdate.email)
+            setPhone(dataUpdate.phone)
+        }
+    }, [dataUpdate])
 
     const handleOnSubmit = async () => {
         // use try / catch
-        const res = await CreateUserAPI(username, email, password, phone)
-
-
+        const res = await CreateUserAPI(id, username, email, phone)
 
         if (res.data) {
             notification.success({
@@ -23,7 +32,6 @@ const UpdateUserModal = (props) => {
                 description: 'user create successfully',
             })
             resetAndCloseModal()
-            // await loadUser()
         } else {
             notification.error({
                 message: 'failed user',
@@ -31,21 +39,28 @@ const UpdateUserModal = (props) => {
             })
         }
         console.log('check res: ', res.data)
+
+
     }
 
     const resetAndCloseModal = () => {
-        setIsModalOpen(false)
+        setIsModalUpdateOpen(false)
+        setID('')
         setUserName('')
         setEmail('')
-        setPassWord('')
         setPhone('')
+        setDataUpdate(null)
     }
 
 
     return (
         <>
-            <Modal title="Update a User" open={isModalOpen} onOk={() => handleOnSubmit()} onCancel={() => resetAndCloseModal()} maskClosable={false} okText="SAVE">
+            <Modal title="Update a User" open={isModalUpdateOpen} onOk={() => handleOnSubmit()} onCancel={() => resetAndCloseModal()} maskClosable={false} okText="SAVE">
                 <div className="user-form">
+                    <div className="user-group">
+                        <span>ID</span>
+                        <Input value={id} disabled />
+                    </div>
                     <div className="user-group">
                         <span>UserName</span>
                         <Input onChange={(event) => setUserName(event.target.value)} value={username} />
@@ -53,10 +68,6 @@ const UpdateUserModal = (props) => {
                     <div className="user-group">
                         <span>Email</span>
                         <Input onChange={(event) => setEmail(event.target.value)} value={email} />
-                    </div>
-                    <div className="user-group">
-                        <span>Password</span>
-                        <Input.Password onChange={(event) => setPassWord(event.target.value)} value={password} />
                     </div>
                     <div className="user-group">
                         <span>Phone</span>
