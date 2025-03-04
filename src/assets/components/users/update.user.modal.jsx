@@ -7,6 +7,7 @@ const UpdateUserModal = (props) => {
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassWord] = useState('')
+    const [phone, setPhone] = useState('')
 
 
     const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props;
@@ -19,12 +20,14 @@ const UpdateUserModal = (props) => {
             setUserName(dataUpdate.username)
             setEmail(dataUpdate.email)
             setPassWord(dataUpdate.password)
+            setPhone(dataUpdate.phone)
+
         }
     }, [dataUpdate])
 
     const handleOnSubmit = async () => {
         // use try / catch
-        const res = await UpdateUserAPI(id, username, email, password)
+        const res = await UpdateUserAPI(id, username, email, password, phone)
 
         if (res.data) {
             notification.success({
@@ -50,6 +53,7 @@ const UpdateUserModal = (props) => {
         setUserName('')
         setEmail('')
         setPassWord('')
+        setPhone('')
         setDataUpdate(null)
     }
 
@@ -73,6 +77,10 @@ const UpdateUserModal = (props) => {
                     <div className="user-group">
                         <span>Pasword</span>
                         <Input.Password onChange={(event) => setPassWord(event.target.value)} value={password} />
+                    </div>
+                    <div className="user-group">
+                        <span>Phone</span>
+                        <Input onChange={(event) => setPhone(event.target.value)} value={phone} />
                     </div>
                 </div>
             </Modal>

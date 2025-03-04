@@ -17,6 +17,8 @@ const ViewUserDetail = (props) => {
                     <p>username: {dataDetail.username}</p>
                     <p>email: {dataDetail.email}</p>
                     <p>password: {dataDetail.password}</p>
+                    <p>phone: {dataDetail.phone}</p>
+
                 </>
                 }
             </Drawer>
