@@ -1,15 +1,15 @@
-import { CreateUserAPI } from "../../services/api.service"
-import { useEffect, useState } from "react"
+import { UpdateUserAPI } from "../../services/api.service";
+import { useEffect, useState } from "react";
 import { Input, notification, Modal } from "antd";
 
 const UpdateUserModal = (props) => {
     const [id, setID] = useState('')
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
+    const [password, setPassWord] = useState('')
 
 
-    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate } = props;
+    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props;
 
     // new data != old data => run useEffect
     useEffect(() => {
@@ -18,20 +18,21 @@ const UpdateUserModal = (props) => {
             setID(dataUpdate.id)
             setUserName(dataUpdate.username)
             setEmail(dataUpdate.email)
-            setPhone(dataUpdate.phone)
+            setPassWord(dataUpdate.password)
         }
     }, [dataUpdate])
 
     const handleOnSubmit = async () => {
         // use try / catch
-        const res = await CreateUserAPI(id, username, email, phone)
+        const res = await UpdateUserAPI(id, username, email, password)
 
         if (res.data) {
             notification.success({
-                message: 'created user',
-                description: 'user create successfully',
+                message: 'updated user',
+                description: 'user update successfully',
             })
             resetAndCloseModal()
+            await loadUser()
         } else {
             notification.error({
                 message: 'failed user',
@@ -48,7 +49,7 @@ const UpdateUserModal = (props) => {
         setID('')
         setUserName('')
         setEmail('')
-        setPhone('')
+        setPassWord('')
         setDataUpdate(null)
     }
 
@@ -70,8 +71,8 @@ const UpdateUserModal = (props) => {
                         <Input onChange={(event) => setEmail(event.target.value)} value={email} />
                     </div>
                     <div className="user-group">
-                        <span>Phone</span>
-                        <Input onChange={(event) => setPhone(event.target.value)} value={phone} />
+                        <span>Pasword</span>
+                        <Input.Password onChange={(event) => setPassWord(event.target.value)} value={password} />
                     </div>
                 </div>
             </Modal>

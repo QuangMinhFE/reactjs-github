@@ -1,11 +1,11 @@
 import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import UpdateUserModal from './update.user.modal';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 const UserTable = (props) => {
-    const { dataUsers } = props;
+    const { dataUsers, loadUser } = props;
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false)
     const [dataUpdate, setDataUpdate] = useState(null);
 
@@ -54,10 +54,11 @@ const UserTable = (props) => {
         },
     ];
 
+
     return (
         <>
             <Table columns={columns} dataSource={dataUsers} rowKey={'id'} />
-            <UpdateUserModal isModalUpdateOpen={isModalUpdateOpen} setIsModalUpdateOpen={setIsModalUpdateOpen} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate} />
+            <UpdateUserModal isModalUpdateOpen={isModalUpdateOpen} setIsModalUpdateOpen={setIsModalUpdateOpen} dataUpdate={dataUpdate} setDataUpdate={setDataUpdate} loadUser={loadUser} />
         </>
     );
 }

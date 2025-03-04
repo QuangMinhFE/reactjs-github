@@ -7,8 +7,17 @@ const CreateUserAPI = (username, email, password, phone) => {
     return axios.post(URL_BACKEND, data)
 }
 
-const UpdateUserAPI = () => {
-    return 123;
+const UpdateUserAPI = (id, username, email, password) => {
+    const URL_BACKEND = `/users/${id}`
+    const data = {
+        id,
+        username,
+        email,
+        password,
+    }
+
+    return axios.put(URL_BACKEND, data)
+
 }
 
 const fetchAllUserAPI = () => {
