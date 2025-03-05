@@ -28,3 +28,27 @@
 .feature-btn--delete {
     color: red;
 }
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    margin-block: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.avatar img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.avatar-btn {
+    padding: 5px 10px;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+}
