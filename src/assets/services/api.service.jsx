@@ -30,4 +30,5 @@ const fetchAllUserAPI = () => {
     return axios.get(URL_BACKEND)
 }
 
+
 export { CreateUserAPI, UpdateUserAPI, fetchAllUserAPI, DeleteUserAPI }
