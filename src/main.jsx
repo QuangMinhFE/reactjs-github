@@ -8,7 +8,7 @@ import BookPage from './assets/pages/book.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TodoApp from './assets/components/todo/TodoApp.jsx'
 import ErrorPage from './assets/pages/error.jsx'
-
+import { AuthWrapper } from './assets/components/context/auth.context.jsx'
 const router = createBrowserRouter([{
   path: '/',
   element: <App />,
@@ -39,7 +39,9 @@ const router = createBrowserRouter([{
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <AuthWrapper>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </AuthWrapper>
 )

@@ -1,15 +1,20 @@
 import { Form, Row, Col, Input, Button, Divider, message } from "antd"
 import { useNavigate, Link } from "react-router-dom"
 import { LoginUserAPI } from "../services/api.user";
+import { useContext } from "react";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const { setUser } = useContext(AuthContext)
     const onFinish = async (values) => {
         const res = await LoginUserAPI(values.username, values.password);
         console.log(res)
         if (res.data) {
             message.success('Đăng nhập thành công')
+            localStorage.setItem('access_token', res.data.access_token)
+            setUser(res.data.user)
             navigate('/')
         } else {
             message.error(JSON.stringify(res.message))
